@@ -7,7 +7,6 @@ class TestIntegrationCongress < MiniTest::Unit::TestCase
   end
 
   def test_legislators_by_zipcode
-
     stub_request(:get, "http://congress.api.sunlightfoundation.com/legislators/locate?apikey=thisismykey&zip=90210")
       .to_return(body: '{"results":[{"first_name":"Joe"}]}')
 

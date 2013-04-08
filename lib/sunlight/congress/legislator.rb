@@ -7,10 +7,11 @@ module Sunlight
 end
 
 class Sunlight::Congress::Legislator
-  attr_accessor :first_name
+  attr_accessor :first_name, :last_name
 
   def initialize(options)
     self.first_name = options["first_name"]
+    self.last_name = options["last_name"]
   end
 
   def self.by_zipcode(zipcode)
