@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Sunlight::Congress::VERSION
   spec.authors       = ["Steve Klabnik"]
   spec.email         = ["steve@steveklabnik.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{A wrapper for the Sunlight Labs Congress API.}
+  spec.summary       = %q{A wrapper for the Sunlight Labs Congress API.}
+  spec.homepage      = "https://github.com/steveklabnik/sunlight-congress"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
