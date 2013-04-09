@@ -36,7 +36,7 @@ Sunlight::Congress.api_key = "lolthisisnotarealkey"
 Then, you can build various objects relating to the API. For example:
 
 ```ruby
-Sunlight::Congress::Legislator.for_zip("90210")
+Sunlight::Congress::Legislator.by_zipcode("90210")
 => [#<Sunlight::Congress::Legislator:0x007fad4a2f67b0 @first_name="Henry"...
 ```
 
