@@ -19,4 +19,10 @@ class Sunlight::Congress::District
 
     JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
   end
+  
+  def self.by_location(latitude, longitude)
+    uri = URI("http://congress.api.sunlightfoundation.com/districts/locate?latitude=42.96&longitude=-108.09&apikey=#{Sunlight::Congress.api_key}")
+
+    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }    
+  end
 end
