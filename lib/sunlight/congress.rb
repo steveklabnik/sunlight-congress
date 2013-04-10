@@ -5,7 +5,7 @@ require "sunlight/congress/committee"
 
 module Sunlight
   module Congress
-    BASE_URL = "http://congress.api.sunlightfoundation.com"
+    BASE_URI = "http://congress.api.sunlightfoundation.com"
 
     def self.api_key
       @api_key
