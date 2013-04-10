@@ -20,4 +20,10 @@ class Sunlight::Congress::Legislator
 
     JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
   end
+
+  def self.by_latlong(latitude, longitude)
+    uri = URI("http://congress.api.sunlightfoundation.com/legislators/locate?latitude=#{latitude}&longitude=#{longitude}&apikey=#{Sunlight::Congress.api_key}")
+
+    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
+  end
 end
