@@ -1,5 +1,6 @@
 require "sunlight/congress/version"
 require "sunlight/congress/legislator"
+require "sunlight/congress/district"
 
 module Sunlight
   module Congress
