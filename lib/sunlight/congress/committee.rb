@@ -1,4 +1,4 @@
-require 'sunlight/congress' unless defined?(Sunlight::Congress)
+require 'sunlight/congress'
 
 class Sunlight::Congress::Committee
   attr_accessor :chamber, :committee_id, :name, :parent_committee_id, :subcommittee

@@ -1,4 +1,4 @@
-require 'sunlight/congress' unless defined?(Sunlight::Congress)
+require 'sunlight/congress'
 
 class Sunlight::Congress::Legislator
   attr_accessor :first_name, :last_name, :website

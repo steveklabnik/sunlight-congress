@@ -1,4 +1,4 @@
-require 'sunlight/congress' unless defined?(Sunlight::Congress)
+require 'sunlight/congress'
 
 module Sunlight
   module Congress
