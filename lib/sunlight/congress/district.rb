@@ -1,5 +1,4 @@
-require 'net/http'
-require 'json'
+require 'sunlight/congress' unless defined?(Sunlight::Congress)
 
 module Sunlight
   module Congress

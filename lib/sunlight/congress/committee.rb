@@ -1,5 +1,4 @@
-require 'net/http'
-require 'json'
+require 'sunlight/congress' unless defined?(Sunlight::Congress)
 
 class Sunlight::Congress::Committee
   attr_accessor :chamber, :committee_id, :name, :parent_committee_id, :subcommittee
