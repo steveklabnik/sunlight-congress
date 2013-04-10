@@ -1,4 +1,4 @@
-require 'sunlight/congress'
+require 'sunlight-congress'
 require 'webmock/minitest'
 
 class TestIntegrationDistrict < MiniTest::Unit::TestCase

@@ -1,7 +1,6 @@
+require 'net/http'
+require 'json'
 require "sunlight/congress/version"
-require "sunlight/congress/legislator"
-require "sunlight/congress/district"
-require "sunlight/congress/committee"
 
 module Sunlight
   module Congress

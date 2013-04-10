@@ -1,10 +1,4 @@
-require 'net/http'
-require 'json'
-
-module Sunlight
-  module Congress
-  end
-end
+require 'sunlight/congress'
 
 class Sunlight::Congress::Legislator
   attr_accessor :first_name, :last_name, :website
