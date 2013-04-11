@@ -1,6 +1,4 @@
-require 'net/http'
-require 'json'
-require 'ostruct'
+require 'sunlight/congress'
 
 class Sunlight::Congress::Bill
   attr_accessor :title, :bill_id, :bill_type, :number, :congress, :chamber,
