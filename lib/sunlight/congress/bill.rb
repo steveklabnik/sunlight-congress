@@ -60,4 +60,9 @@ class Sunlight::Congress::Bill
 
     JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
   end
+
+  def self.by_bill_id(bill_id)
+    uri = URI("#{Sunlight::Congress::BASE_URI}/bills?bill_id=#{bill_id}&apikey=#{Sunlight::Congress.api_key}")
+    new(JSON.load(Net::HTTP.get(uri))['results'].first)
+  end
 end
