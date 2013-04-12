@@ -1,10 +1,4 @@
-require 'net/http'
-require 'json'
-
-module Sunlight
-  module Congress
-  end
-end
+require 'sunlight/congress'
 
 class Sunlight::Congress::Legislator
   attr_accessor :first_name, :last_name, :website
@@ -16,7 +10,13 @@ class Sunlight::Congress::Legislator
   end
 
   def self.by_zipcode(zipcode)
-    uri = URI("http://congress.api.sunlightfoundation.com/legislators/locate?zip=#{zipcode}&apikey=#{Sunlight::Congress.api_key}")
+    uri = URI("#{Sunlight::Congress::BASE_URI}/legislators/locate?zip=#{zipcode}&apikey=#{Sunlight::Congress.api_key}")
+
+    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
+  end
+
+  def self.by_latlong(latitude, longitude)
+    uri = URI("#{Sunlight::Congress::BASE_URI}/legislators/locate?latitude=#{latitude}&longitude=#{longitude}&apikey=#{Sunlight::Congress.api_key}")
 
     JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
   end

@@ -1,8 +1,13 @@
 require "sunlight/congress/version"
 require "sunlight/congress/legislator"
+require "sunlight/congress/district"
+require "sunlight/congress/committee"
+require "sunlight/congress/bill"
 
 module Sunlight
   module Congress
+    BASE_URI = "http://congress.api.sunlightfoundation.com"
+
     def self.api_key
       @api_key
     end
