@@ -1,7 +1,9 @@
 require 'sunlight/congress'
 
-class Sunlight::Congress::District
-  attr_accessor :state, :district
+module Sunlight
+  class Congress
+    class District
+      attr_accessor :state, :district
 
   def initialize(options)
     self.state = options["state"]
