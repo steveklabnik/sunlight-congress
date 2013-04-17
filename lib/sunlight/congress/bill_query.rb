@@ -48,6 +48,20 @@ class Sunlight::Congress
       @results = response['results'].collect { |json| Sunlight::Congress::Bill.new(json) }
     end
 
+    def self.search(query, filters = {})
+      args = filters.inject("") { |str, arr| str << "&#{arr[0]}=#{arr[1]}" }
+      uri = URI(URI.escape("#{Sunlight::Congress::BASE_URI}/bills/search?query=\"#{query}\"&apikey=#{Sunlight::Congress.api_key}#{args}"))
+
+      new(JSON.load(Net::HTTP.get(uri)), uri)
+    end
+
+    def self.by_fields(filters = {})
+      args = filters.inject("") { |str, arr| str << "&#{arr[0]}=#{arr[1]}" }
+      uri = URI(URI.escape("#{Sunlight::Congress::BASE_URI}/bills?apikey=#{Sunlight::Congress.api_key}#{args}"))
+
+      new(JSON.load(Net::HTTP.get(uri)), uri)
+    end
+
     class Finder
       attr_reader :api_key
 

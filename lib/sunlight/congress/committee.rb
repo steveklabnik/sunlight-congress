@@ -16,6 +16,12 @@ class Sunlight::Congress
       self.subcommittee = options["subcommittee"]
     end
 
+    def self.by_committee_id(committee_id)
+      uri = URI("#{Sunlight::Congress::BASE_URI}/committees?committee_id=#{committee_id}&apikey=#{Sunlight::Congress.api_key}")
+
+      JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
+    end
+
     class Finder
       attr_reader :api_key
 
