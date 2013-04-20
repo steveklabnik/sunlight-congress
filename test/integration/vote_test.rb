@@ -1,6 +1,7 @@
 require 'sunlight/congress/vote'
 require 'webmock/minitest'
 require 'minitest/autorun'
+require 'turn/autorun'
 
 class TestIntegrationVote < MiniTest::Unit::TestCase
   def setup
