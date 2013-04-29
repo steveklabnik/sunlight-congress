@@ -23,4 +23,16 @@ class TestIntegrationCongress < MiniTest::Unit::TestCase
 
     assert_equal "Joe", legislators.first.first_name
   end
+
+  def test_legislators_by_search
+    stub_request(:get, "http://congress.api.sunlightfoundation.com/legislators?state=CA&chamber=senate&apikey=thisismykey")
+      .to_return(body: File.new('test/integration/json/legislator_query/fields.json'))
+
+    legislators = Sunlight::Congress::Legislator.search(state: "CA", chamber: "senate")
+
+    assert_equal 2, legislators.size
+    assert_equal "Barbara", legislators.first.first_name
+    assert_equal "Dianne", legislators.last.first_name
+    assert_equal "senate", legislators.last.chamber
+  end
 end
