@@ -45,14 +45,14 @@ class Sunlight::Congress::BillQuery
 
   def self.search(query, filters = {})
     args = filters.inject("") { |str, arr| str << "&#{arr[0]}=#{arr[1]}" }
-    uri = URI(URI.escape("#{Sunlight::Congress::BASE_URI}/bills/search?query=\"#{query}\"&apikey=#{Sunlight::Congress.api_key}#{args}"))
+    uri = URI(URI.escape("#{Sunlight::Congress::Base.base_uri}/bills/search?query=\"#{query}\"&apikey=#{Sunlight::Congress::Base.api_key}#{args}"))
 
     new(JSON.load(Net::HTTP.get(uri)), uri)
   end
 
   def self.by_fields(filters = {})
     args = filters.inject("") { |str, arr| str << "&#{arr[0]}=#{arr[1]}" }
-    uri = URI(URI.escape("#{Sunlight::Congress::BASE_URI}/bills?apikey=#{Sunlight::Congress.api_key}#{args}"))
+    uri = URI(URI.escape("#{Sunlight::Congress::Base.base_uri}/bills?apikey=#{Sunlight::Congress::Base.api_key}#{args}"))
 
     new(JSON.load(Net::HTTP.get(uri)), uri)
   end
