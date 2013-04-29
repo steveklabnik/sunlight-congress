@@ -4,9 +4,11 @@ class Sunlight::Congress::Legislator
   attr_accessor :first_name, :last_name, :website
 
   def initialize(options)
-    self.first_name = options["first_name"]
-    self.last_name = options["last_name"]
-    self.website = options["website"]
+    options.each { |k,v| eval("@#{k}=#{v.inspect}") }
+  end
+
+  def self.search(*args)
+    Sunlight::Congress::Base.new(self).search(*args)
   end
 
   def self.by_zipcode(zipcode)
