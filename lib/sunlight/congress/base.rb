@@ -56,3 +56,4 @@ class Sunlight::Congress::Base
     self.class.api_key
   end
 end
+
