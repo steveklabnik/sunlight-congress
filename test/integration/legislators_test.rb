@@ -23,4 +23,35 @@ class TestIntegrationCongress < MiniTest::Unit::TestCase
 
     assert_equal "Joe", legislators.first.first_name
   end
+
+  def test_legislators_by_name
+    stub_request(:get, "http://congress.api.sunlightfoundation.com/legislators?query=joe&apikey=thisismykey")
+      .to_return(body: '{"results":[{"first_name":"Joe"}]}')
+
+    legislators = Sunlight::Congress::Legislator.by_name("joe")
+
+    assert_equal "Joe", legislators.first.first_name
+  end
+
+  def test_legislators_by_state
+    stub_request(:get, "http://congress.api.sunlightfoundation.com/legislators?state=CA&apikey=thisismykey")
+      .to_return(body: '{"results": [{"first_name":"Joe",
+                                       "state":"CA",
+                                       "state_name":"California"}]}')
+
+    legislators = Sunlight::Congress::Legislator.by_state("CA")
+
+    assert_equal "CA", legislators.first.state
+    assert_equal "California", legislators.first.state_name
+
+    stub_request(:get, "http://congress.api.sunlightfoundation.com/legislators?state_name=California&apikey=thisismykey")
+      .to_return(body: '{"results": [{"first_name":"Joe",
+                                       "state":"CA",
+                                       "state_name":"California"}]}')
+
+    legislators = Sunlight::Congress::Legislator.by_state("California")
+
+    assert_equal "CA", legislators.first.state
+    assert_equal "California", legislators.first.state_name
+  end
 end
