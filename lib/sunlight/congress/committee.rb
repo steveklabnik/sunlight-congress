@@ -12,7 +12,7 @@ class Sunlight::Congress::Committee
   end
 
   def self.by_committee_id(committee_id)
-    uri = URI("#{Sunlight::Congress::BASE_URI}/committees?committee_id=#{committee_id}&apikey=#{Sunlight::Congress.api_key}")
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/committees?committee_id=#{committee_id}&apikey=#{Sunlight::Congress::Base.api_key}")
 
     JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
   end
