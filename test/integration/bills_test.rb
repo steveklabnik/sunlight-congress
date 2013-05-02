@@ -3,7 +3,7 @@ require 'webmock/minitest'
 
 class TestIntegrationCongress < MiniTest::Unit::TestCase
   def setup
-    Sunlight::Congress.api_key = "specialapikey"
+    Sunlight::Congress::Base.api_key = "specialapikey"
   end
 
   def test_bills_by_title

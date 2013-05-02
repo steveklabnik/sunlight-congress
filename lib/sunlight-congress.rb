@@ -1,5 +1,6 @@
 require "sunlight/congress"
 require "sunlight/congress/version"
+require "sunlight/congress/base"
 require "sunlight/congress/legislator"
 require "sunlight/congress/district"
 require "sunlight/congress/committee"
