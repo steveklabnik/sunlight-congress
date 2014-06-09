@@ -1,5 +1,7 @@
 # Sunlight::Congress
 
+[![Build Status](https://travis-ci.org/steveklabnik/sunlight-congress.svg?branch=master)](https://travis-ci.org/steveklabnik/sunlight-congress)
+
 This is a wrapper for the [Sunlight Foundation's Congress API](http://sunlightlabs.github.io/congress/).
 
 It is very much a work in progress, and only supports part of the API. Any
