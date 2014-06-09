@@ -9,14 +9,22 @@ class Sunlight::Congress::District
   end
 
   def self.by_zipcode(zipcode)
-    uri = URI("#{Sunlight::Congress::BASE_URI}/districts/locate?zip=#{zipcode}&apikey=#{Sunlight::Congress.api_key}")
-
-    new(JSON.load(Net::HTTP.get(uri))["results"].first)
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/districts/locate?zip=#{zipcode}&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri).first
   end
 
   def self.by_latlong(latitude, longitude)
-    uri = URI("#{Sunlight::Congress::BASE_URI}/districts/locate?latitude=#{latitude}&longitude=#{longitude}&apikey=#{Sunlight::Congress.api_key}")
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/districts/locate?latitude=#{latitude}&longitude=#{longitude}&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri).first
+  end
 
-    new(JSON.load(Net::HTTP.get(uri))["results"].first)
+  private
+  def self.parse_response(uri)
+    Sunlight::Congress::Base.new(self).parse_response(uri)
+  end
+
+  def self.get_resource(uri)
+    response = JSON.load(Net::HTTP.get(uri))["results"]
+    Sunlight::Congress::Base.new(self).parse_response(response)
   end
 end

@@ -34,7 +34,7 @@ class Sunlight::Congress::FloorUpdates
   end
 
   def self.sunlight_uri(query={})
-    query = URI.encode(query.merge({:apikey => Sunlight::Congress.api_key}).collect { |k,v|  "#{k.to_s}=#{v.to_s}"}.join("&"))
-    URI("#{Sunlight::Congress::BASE_URI}/floor_updates?#{query}")
+    query = URI.encode(query.merge({:apikey => Sunlight::Congress::Base.api_key}).collect { |k,v|  "#{k.to_s}=#{v.to_s}"}.join("&"))
+    URI("#{Sunlight::Congress::Base.base_uri}/floor_updates?#{query}")
   end
 end

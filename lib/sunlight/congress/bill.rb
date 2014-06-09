@@ -37,32 +37,39 @@ class Sunlight::Congress::Bill
   end
 
   def self.by_title(title)
-    uri = URI("#{Sunlight::Congress::BASE_URI}/bills/search?query=#{title}&apikey=#{Sunlight::Congress.api_key}")
-
-    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json)}
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/bills/search?query=#{title}&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri)
   end
 
   def self.by_congress(congress)
-    uri = URI("http://congress.api.sunlightfoundation.com/bills?congress=#{congress}&apikey=#{Sunlight::Congress.api_key}")
-
-    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/bills?congress=#{congress}&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri)
   end
 
   def self.by_term(term)
-    uri = URI("http://congress.api.sunlightfoundation.com/bills/search?query='#{term}'&apikey=#{Sunlight::Congress.api_key}")
-
-    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/bills/search?query='#{term}'&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri)
   end
 
   def self.by_sponsor_party(party)
     party = party[0].upcase
-    uri = URI("http://congress.api.sunlightfoundation.com/bills?sponsor.party='#{party}'&apikey=#{Sunlight::Congress.api_key}")
-
-    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/bills?sponsor.party='#{party}'&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri)
   end
 
   def self.by_bill_id(bill_id)
-    uri = URI("#{Sunlight::Congress::BASE_URI}/bills?bill_id=#{bill_id}&apikey=#{Sunlight::Congress.api_key}")
-    new(JSON.load(Net::HTTP.get(uri))['results'].first)
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/bills?bill_id=#{bill_id}&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri).first
   end
+
+  private
+  def self.parse_response(uri)
+    Sunlight::Congress::Base.new(self).parse_response(uri)
+  end
+
+  def self.get_resource(uri)
+    response = JSON.load(Net::HTTP.get(uri))["results"]
+    Sunlight::Congress::Base.new(self).parse_response(response)
+  end
+
 end

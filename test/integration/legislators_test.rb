@@ -3,7 +3,7 @@ require 'webmock/minitest'
 
 class TestIntegrationCongress < MiniTest::Unit::TestCase
   def setup
-    Sunlight::Congress.api_key = "thisismykey"
+    Sunlight::Congress::Base.api_key = "thisismykey"
   end
 
   def test_legislators_by_zipcode

@@ -8,21 +8,18 @@ class Sunlight::Congress::Legislator
   end
 
   def self.by_zipcode(zipcode)
-    uri = URI("#{Sunlight::Congress::BASE_URI}/legislators/locate?zip=#{zipcode}&apikey=#{Sunlight::Congress.api_key}")
-
-    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/legislators/locate?zip=#{zipcode}&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri)
   end
 
   def self.by_latlong(latitude, longitude)
-    uri = URI("#{Sunlight::Congress::BASE_URI}/legislators/locate?latitude=#{latitude}&longitude=#{longitude}&apikey=#{Sunlight::Congress.api_key}")
-
-    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/legislators/locate?latitude=#{latitude}&longitude=#{longitude}&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri)
   end
 
   def self.by_name(name)
-    uri = URI("#{Sunlight::Congress::BASE_URI}/legislators?query=#{name}&apikey=#{Sunlight::Congress.api_key}")
-    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
-
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/legislators?query=#{name}&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri)
   end
 
   def self.by_state(state)
@@ -32,7 +29,17 @@ class Sunlight::Congress::Legislator
       state_search, state_param = "state_name", state.capitalize
     end
 
-    uri = URI("#{Sunlight::Congress::BASE_URI}/legislators?#{state_search}=#{state_param}&apikey=#{Sunlight::Congress.api_key}")
-    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
+    uri = URI("#{Sunlight::Congress::Base.base_uri}/legislators?#{state_search}=#{state_param}&apikey=#{Sunlight::Congress::Base.api_key}")
+    get_resource(uri)
+  end
+
+  private
+  def self.parse_response(uri)
+    Sunlight::Congress::Base.new(self).parse_response(uri)
+  end
+
+  def self.get_resource(uri)
+    response = JSON.load(Net::HTTP.get(uri))["results"]
+    Sunlight::Congress::Base.new(self).parse_response(response)
   end
 end
