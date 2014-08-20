@@ -35,4 +35,9 @@ class Sunlight::Congress::Legislator
     uri = URI("#{Sunlight::Congress::BASE_URI}/legislators?#{state_search}=#{state_param}&apikey=#{Sunlight::Congress.api_key}")
     JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
   end
+
+  def self.by_bioguide_id(bioguide_id)
+    uri = URI("#{Sunlight::Congress::BASE_URI}/legislators?bioguide_id=#{bioguide_id}&apikey=#{Sunlight::Congress.api_key}")
+    JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
+  end
 end
