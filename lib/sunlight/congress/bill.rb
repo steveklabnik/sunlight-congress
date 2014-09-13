@@ -43,20 +43,20 @@ class Sunlight::Congress::Bill
   end
 
   def self.by_congress(congress)
-    uri = URI("http://congress.api.sunlightfoundation.com/bills?congress=#{congress}&apikey=#{Sunlight::Congress.api_key}")
+    uri = URI("https://congress.api.sunlightfoundation.com/bills?congress=#{congress}&apikey=#{Sunlight::Congress.api_key}")
 
     JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
   end
 
   def self.by_term(term)
-    uri = URI("http://congress.api.sunlightfoundation.com/bills/search?query='#{term}'&apikey=#{Sunlight::Congress.api_key}")
+    uri = URI("https://congress.api.sunlightfoundation.com/bills/search?query='#{term}'&apikey=#{Sunlight::Congress.api_key}")
 
     JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
   end
 
   def self.by_sponsor_party(party)
     party = party[0].upcase
-    uri = URI("http://congress.api.sunlightfoundation.com/bills?sponsor.party='#{party}'&apikey=#{Sunlight::Congress.api_key}")
+    uri = URI("https://congress.api.sunlightfoundation.com/bills?sponsor.party='#{party}'&apikey=#{Sunlight::Congress.api_key}")
 
     JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
   end
