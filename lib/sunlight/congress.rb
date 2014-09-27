@@ -4,7 +4,7 @@ require 'ostruct'
 
 module Sunlight
   module Congress
-    BASE_URI = "http://congress.api.sunlightfoundation.com"
+    BASE_URI = "https://congress.api.sunlightfoundation.com"
 
     def self.api_key
       @api_key
