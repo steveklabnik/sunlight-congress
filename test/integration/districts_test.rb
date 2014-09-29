@@ -7,7 +7,7 @@ class TestIntegrationDistrict < MiniTest::Unit::TestCase
   end
 
   def test_districts_by_zipcode
-    stub_request(:get, "http://congress.api.sunlightfoundation.com/districts/locate?apikey=thisismykey&zip=12186")
+    stub_request(:get, "https://congress.api.sunlightfoundation.com/districts/locate?apikey=thisismykey&zip=12186")
       .to_return(body: '{"results":[{"state":"NY", "district":20}]}')
 
     district = Sunlight::Congress::District.by_zipcode(12186)
@@ -17,7 +17,7 @@ class TestIntegrationDistrict < MiniTest::Unit::TestCase
   end
 
   def test_districts_by_latlong
-    stub_request(:get, "http://congress.api.sunlightfoundation.com/districts/locate?apikey=thisismykey&latitude=42.6525&longitude=-73.7567")
+    stub_request(:get, "https://congress.api.sunlightfoundation.com/districts/locate?apikey=thisismykey&latitude=42.6525&longitude=-73.7567")
       .to_return(body: '{"results":[{"state":"NY", "district":20}]}')
 
     district = Sunlight::Congress::District.by_latlong(42.6525, -73.7567)
