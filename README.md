@@ -11,7 +11,7 @@ assistance with implementing extra calls would be appreciated!
 
 Add this line to your application's Gemfile:
 
-    gem 'sunlight-congress'
+    gem 'sunlight/congress'
 
 And then execute:
 
