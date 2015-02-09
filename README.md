@@ -30,7 +30,7 @@ have no usage limits.
 Once you have your key:
 
 ```ruby
-require 'sunlight-congress'
+require 'sunlight/congress'
 
 Sunlight::Congress.api_key = "lolthisisnotarealkey"
 ```
