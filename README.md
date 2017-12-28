@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/steveklabnik/sunlight-congress.svg?branch=master)](https://travis-ci.org/steveklabnik/sunlight-congress)
 
+*The API this uses has been shutdown.* Follow [this post](https://www.propublica.org/nerds/congress-api-bill-subjects-personal-explanations-and-sunsetting-sunlight) for more information.
+
 This is a wrapper for the [Sunlight Foundation's Congress API](http://sunlightlabs.github.io/congress/).
 
 It is very much a work in progress, and only supports part of the API. Any
