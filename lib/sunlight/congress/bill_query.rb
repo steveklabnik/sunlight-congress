@@ -11,7 +11,7 @@ class Sunlight::Congress::BillQuery
     @per_page           = response['page']['per_page']
     @current_page       = response['page']['page']
     @current_page_count = response['page']['count']
-    @pages          = ((@count / @per_page) + 0.5).round
+    @pages              = ((@count / @per_page) + 0.5).round
   end
 
   def page(page_num)
